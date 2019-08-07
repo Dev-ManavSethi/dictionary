@@ -2,13 +2,17 @@ package search
 
 import (
 	"github.com/Dev-ManavSethi/dictionary/models"
+	"golang.org/x/net/websocket"
 )
 
-func Search(word string) bool {
+func Search(word string, ws *websocket.Conn) bool {
+
+	var meaning string
 
 	NodeExists := subNodeExists(models.Root, word[0])
 
 	if !NodeExists {
+		ws.Write([]byte("DNE"))
 		return false
 	}
 	if NodeExists {
@@ -27,14 +31,22 @@ func Search(word string) bool {
 		}
 
 		if NodeExists == false {
+
+			ws.Write([]byte("DNE"))
 			return false
 		}
 
 		if NodeExists == true && subNode.IsEnd == false && i == len(word) {
 
+			ws.Write([]byte("DNE"))
+
 			return false
 		}
+
+		meaning = subNode.Meaning
 	}
+
+	ws.Write([]byte(meaning))
 
 	return true
 

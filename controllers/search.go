@@ -18,15 +18,9 @@ func Search(ws *websocket.Conn) {
 			//do something
 		} else {
 			Word := SearchReq.Word
-			Exists := search.Search(Word)
-
-			if !Exists {
-
-				ws.Write([]byte("DNE"))
-			}
-
+			Exists := search.Search(Word, ws)
 			if Exists {
-				ws.Write([]byte("E"))
+
 			}
 
 		}

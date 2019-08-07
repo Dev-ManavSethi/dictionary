@@ -5,13 +5,11 @@ type (
 		Alphabets []*Node
 		Alphabet  byte
 		IsEnd     bool
+		Meaning   string
 	}
 )
 
 var (
-
 	DictionaryRoot Node
-	Root *Node
+	Root           *Node
 )
-
-

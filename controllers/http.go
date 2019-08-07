@@ -19,8 +19,9 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	}
 
 	word := r.FormValue("word")
+	meaning := r.FormValue("meaning")
 
-	ok := search.Add(word)
+	ok := search.Add(word, meaning)
 
 	if ok {
 		log.Println("Added: ", word)

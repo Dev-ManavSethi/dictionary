@@ -4,12 +4,12 @@ import (
 	"github.com/Dev-ManavSethi/dictionary/models"
 )
 
-func Add(word string) bool {
+func Add(word, meaning string) bool {
 
 	i := 0
 
 	NodeExists := subNodeExists(models.Root, word[i])
-
+	//var meaningg string = meaning
 	if !NodeExists {
 		//add node
 		subNode := models.Root
@@ -24,6 +24,10 @@ func Add(word string) bool {
 				Alphabet:  word[i],
 				Alphabets: []*models.Node{},
 				IsEnd:     isEnd,
+			}
+
+			if isEnd {
+				subsubNode.Meaning = meaning
 			}
 			subNode.Alphabets = append(subNode.Alphabets, subsubNode)
 
